@@ -1,11 +1,11 @@
-import { SignJWT, jwtVerify, errors as joseErrors } from "jose";
+import { errors as joseErrors, jwtVerify, SignJWT } from "jose";
 import {
   AuthenticationError,
-  TokenExpiredError,
   InvalidTokenError,
+  type JWTPayload,
   type LoginResult,
   type RefreshResult,
-  type JWTPayload,
+  TokenExpiredError,
 } from "../types/auth.types.js";
 
 // Hardcoded user for learning purposes

@@ -27,3 +27,6 @@ pnpm frontend dev
 ```bash
 pnpm backend dev
 ```
+
+## 参考文献
+- [JWT Decorder](https://www.jwt.io/ja)

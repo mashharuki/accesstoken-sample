@@ -1,4 +1,5 @@
 import { serve } from "@hono/node-server";
+import "dotenv/config";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { errorHandler } from "./middleware/error-handler.js";
