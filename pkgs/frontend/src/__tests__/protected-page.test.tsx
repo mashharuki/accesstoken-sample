@@ -126,7 +126,7 @@ describe("ProtectedPage", () => {
     });
 
     // TokenDebugPanel should not be rendered
-    expect(screen.queryByText("トークンデバッグ情報")).not.toBeInTheDocument();
+    expect(screen.queryByText(/トークンデバッグ情報/)).not.toBeInTheDocument();
   });
 
   it("should show TokenDebugPanel when debugMode is true", async () => {
@@ -165,12 +165,8 @@ describe("ProtectedPage", () => {
     });
 
     // TokenDebugPanel should be rendered
-    expect(screen.getByText("トークンデバッグ情報")).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "有効期限" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "ペイロード" }),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/トークンデバッグ情報/)).toBeInTheDocument();
+    expect(screen.getAllByText(/有効期限/).length).toBeGreaterThan(0);
+    expect(screen.getByText(/ペイロード/)).toBeInTheDocument();
   });
 });

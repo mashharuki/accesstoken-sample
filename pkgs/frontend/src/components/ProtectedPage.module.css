@@ -1,0 +1,295 @@
+/**
+ * ProtectedPage Component Styles
+ * Apple風のコンテンツ表示ページ
+ *
+ * デザインポイント:
+ * - カードベースのレイアウト
+ * - 情報の階層を明確に
+ * - スケルトンローディング
+ * - エラー表示は控えめで建設的
+ */
+
+.container {
+  min-height: 100vh;
+  padding: var(--spacing-2xl);
+  background: var(--color-background-secondary);
+}
+
+.content {
+  max-width: 960px;
+  margin: 0 auto;
+  animation: fade-in var(--transition-slow) ease-out;
+}
+
+.header {
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}
+
+.card {
+  padding: var(--spacing-2xl);
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.dataSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.dataItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-lg);
+  background: var(--color-background-tertiary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+}
+
+.dataItem:hover {
+  background: var(--color-background-secondary);
+  box-shadow: var(--shadow-xs);
+}
+
+.dataLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dataValue {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+/* ローディング状態 */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: var(--spacing-lg);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}
+
+/* スケルトンローディング */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-background-secondary) 0px,
+    rgba(0, 0, 0, 0.04) 40px,
+    var(--color-background-secondary) 80px
+  );
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeletonTitle {
+  composes: skeleton;
+  height: 32px;
+  width: 60%;
+  margin-bottom: var(--spacing-md);
+}
+
+.skeletonText {
+  composes: skeleton;
+  height: 20px;
+  width: 100%;
+  margin-bottom: var(--spacing-sm);
+}
+
+.skeletonTextShort {
+  composes: skeleton;
+  height: 20px;
+  width: 40%;
+}
+
+/* エラー状態 */
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: var(--spacing-lg);
+  text-align: center;
+}
+
+.errorIcon {
+  font-size: 48px;
+  opacity: 0.5;
+}
+
+.errorMessage {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-error);
+  background: var(--color-error-bg);
+  border-radius: var(--radius-md);
+  animation: slide-in var(--transition-base) ease-out;
+}
+
+.errorDetails {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.retryButton {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.retryButton:hover {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.retryButton:active {
+  transform: translateY(0);
+}
+
+/* 空状態 */
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: var(--spacing-lg);
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  opacity: 0.3;
+}
+
+.emptyMessage {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-lg);
+  }
+
+  .card {
+    padding: var(--spacing-lg);
+  }
+
+  .title {
+    font-size: var(--font-size-lg);
+  }
+
+  .dataItem {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  .card {
+    padding: var(--spacing-md);
+  }
+
+  .header {
+    padding-bottom: var(--spacing-lg);
+  }
+
+  .title {
+    font-size: var(--font-size-md);
+  }
+
+  .subtitle {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* アクセシビリティ: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .errorMessage,
+  .spinner,
+  .skeleton,
+  .dataItem,
+  .retryButton {
+    animation: none;
+    transition: none;
+  }
+
+  .retryButton:hover {
+    transform: none;
+  }
+}

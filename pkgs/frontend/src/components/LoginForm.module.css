@@ -1,0 +1,238 @@
+/**
+ * LoginForm Component Styles
+ * Apple風の洗練されたログインフォーム
+ *
+ * デザインポイント:
+ * - 中央配置のカードレイアウト
+ * - 余白を贅沢に使用
+ * - フォーカス時の繊細なアニメーション
+ * - エラー表示は控えめに
+ */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: var(--spacing-lg);
+  background: linear-gradient(
+    180deg,
+    var(--color-background) 0%,
+    var(--color-background-secondary) 100%
+  );
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: var(--spacing-3xl);
+  background: var(--color-background);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  animation: fade-in var(--transition-slow) ease-out;
+}
+
+.title {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0 0 var(--spacing-2xl) 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: color var(--transition-base);
+}
+
+.input {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all var(--transition-base);
+}
+
+.input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.input:hover {
+  border-color: var(--color-border-hover);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+}
+
+.input:disabled {
+  background: var(--color-background-secondary);
+  color: var(--color-text-tertiary);
+  cursor: not-allowed;
+}
+
+.button {
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-xl);
+  margin-top: var(--spacing-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-on-primary);
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-base);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.button:active:not(:disabled) {
+  background: var(--color-primary-active);
+  transform: translateY(0);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  background: var(--color-text-tertiary);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ローディング状態のインジケーター */
+.buttonLoading {
+  position: relative;
+}
+
+.buttonLoading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid var(--color-text-on-primary);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: button-spinner 0.6s linear infinite;
+}
+
+@keyframes button-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-error);
+  background: var(--color-error-bg);
+  border-radius: var(--radius-md);
+  animation: slide-in var(--transition-base) ease-out;
+}
+
+.error::before {
+  content: "⚠";
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 480px) {
+  .card {
+    padding: var(--spacing-xl);
+  }
+
+  .title {
+    font-size: var(--font-size-lg);
+  }
+
+  .subtitle {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ダークモード対応の準備 */
+@media (prefers-color-scheme: dark) {
+  /* 将来的にダークモード対応を追加する場合はここに記述 */
+}
+
+/* アクセシビリティ: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .error,
+  .button,
+  .input,
+  .buttonLoading::after {
+    animation: none;
+    transition: none;
+  }
+
+  .button:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+/* タッチデバイス最適化 */
+@media (hover: none) and (pointer: coarse) {
+  .button:hover:not(:disabled) {
+    transform: none;
+  }
+
+  .input {
+    /* タッチデバイスでは大きめのタップターゲット */
+    min-height: 44px;
+  }
+}

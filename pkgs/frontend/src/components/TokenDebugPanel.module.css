@@ -1,0 +1,275 @@
+/**
+ * TokenDebugPanel Component Styles
+ * Apple風のデバッグ情報パネル
+ *
+ * デザインポイント:
+ * - 開発者ツール風のモノスペースフォント
+ * - コンソール風の配色
+ * - コピー可能な情報を明示
+ * - 折りたたみ可能なセクション
+ */
+
+.panel {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-2xl);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  animation: fade-in var(--transition-slow) ease-out;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.badge {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-on-primary);
+  background: var(--color-warning);
+  border-radius: var(--radius-sm);
+}
+
+.section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sectionIcon {
+  font-size: 14px;
+}
+
+.infoBox {
+  padding: var(--spacing-lg);
+  background: var(--color-background-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.infoLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+}
+
+.infoValue {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+}
+
+.codeBlock {
+  position: relative;
+  padding: var(--spacing-lg);
+  background: #1D1D1F;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.code {
+  margin: 0;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  color: #34C759;
+  white-space: pre;
+  tab-size: 2;
+}
+
+/* シンタックスハイライト風 */
+.code :global(.key) {
+  color: #FF9500;
+}
+
+.code :global(.string) {
+  color: #FF6B6B;
+}
+
+.code :global(.number) {
+  color: #5E5CE6;
+}
+
+.copyButton {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-on-primary);
+}
+
+.copyButton:active {
+  transform: scale(0.95);
+}
+
+.errorMessage {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  color: var(--color-error);
+  background: var(--color-error-bg);
+  border-radius: var(--radius-md);
+}
+
+.errorIcon {
+  font-size: 16px;
+}
+
+.warningBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  background: rgba(255, 149, 0, 0.1);
+  border-left: 3px solid var(--color-warning);
+  border-radius: var(--radius-md);
+}
+
+.warningIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.warningContent {
+  flex: 1;
+}
+
+.warningTitle {
+  margin: 0 0 var(--spacing-xs) 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-warning);
+}
+
+.warningText {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-secondary);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .panel {
+    padding: var(--spacing-lg);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .infoRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .codeBlock {
+    padding: var(--spacing-md);
+  }
+
+  .code {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .panel {
+    padding: var(--spacing-md);
+  }
+
+  .title {
+    font-size: var(--font-size-md);
+  }
+
+  .warningBox {
+    flex-direction: column;
+  }
+}
+
+/* アクセシビリティ: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .copyButton {
+    animation: none;
+    transition: none;
+  }
+
+  .copyButton:active {
+    transform: none;
+  }
+}
+
+/* スクロールバーのカスタマイズ（Webkit系ブラウザ） */
+.codeBlock::-webkit-scrollbar {
+  height: 8px;
+}
+
+.codeBlock::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.codeBlock::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.codeBlock::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

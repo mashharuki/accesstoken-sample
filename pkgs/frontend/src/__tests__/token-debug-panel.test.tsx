@@ -63,13 +63,9 @@ describe("TokenDebugPanel", () => {
 
     render(<TokenDebugPanel debugMode={true} />);
 
-    expect(screen.getByText("トークンデバッグ情報")).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "有効期限" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "ペイロード" }),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/トークンデバッグ情報/)).toBeInTheDocument();
+    expect(screen.getAllByText(/有効期限/).length).toBeGreaterThan(0);
+    expect(screen.getByText(/ペイロード/)).toBeInTheDocument();
   });
 
   it("should display expiration time from JWT payload", () => {
@@ -85,8 +81,8 @@ describe("TokenDebugPanel", () => {
 
     render(<TokenDebugPanel debugMode={true} />);
 
-    // Should display the expiration timestamp
-    expect(screen.getByText("有効期限: 1609459200")).toBeInTheDocument();
+    // Should display the expiration timestamp (now shown as a value in infoRow)
+    expect(screen.getByText("1609459200")).toBeInTheDocument();
   });
 
   it("should display decoded JWT payload", () => {
