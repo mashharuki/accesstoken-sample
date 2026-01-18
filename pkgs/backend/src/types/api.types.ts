@@ -19,3 +19,12 @@ export interface LoginResponse {
 export interface RefreshResponse {
   accessToken: string;
 }
+
+export interface ProtectedResponse {
+  message: string;
+  user: {
+    id: string;
+    username: string;
+  };
+  timestamp: number;
+}

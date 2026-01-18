@@ -95,7 +95,7 @@
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
   - _Note: 3.1完了後に実装可能_
 
-- [ ] 3.4 JWT認証ミドルウェアの実装
+- [x] 3.4 JWT認証ミドルウェアの実装
   - `Authorization: Bearer <token>`ヘッダーからトークン抽出
   - AuthServiceによるトークン検証
   - 検証成功時のコンテキストへのユーザー情報設定
@@ -103,7 +103,7 @@
   - _Requirements: 3.2, 3.3, 3.4_
   - _Note: 2.2完了後に実装可能_
 
-- [ ] 3.5 保護エンドポイント（GET /api/protected）の実装
+- [x] 3.5 保護エンドポイント（GET /api/protected）の実装
   - JWT認証ミドルウェアの適用
   - コンテキストからユーザー情報取得
   - 保護データのJSONレスポンス返却
@@ -115,7 +115,7 @@
 
 ### 4. フロントエンド認証コンテキストの実装
 
-- [ ] 4.1 (P) AuthContextとProviderの実装
+- [x] 4.1 (P) AuthContextとProviderの実装
   - React Context APIの設定
   - 認証状態管理（isAuthenticated, user, accessToken）
   - ログイン関数の実装（POST /auth/login呼び出し）
@@ -125,7 +125,7 @@
   - 同時リフレッシュ防止フラグ
   - _Requirements: 4.3, 4.4, 5.2, 5.3, 5.4_
 
-- [ ] 4.2 (P) useAuthカスタムフックの実装
+- [x] 4.2 (P) useAuthカスタムフックの実装
   - AuthContextへのアクセスを提供
   - 型安全なコンテキスト取得
   - Context未設定時のエラーハンドリング
@@ -135,7 +135,7 @@
 
 ### 5. フロントエンドAPIクライアントの実装
 
-- [ ] 5.1 (P) apiClientユーティリティの実装
+- [x] 5.1 (P) apiClientユーティリティの実装
   - fetchラッパー関数の作成
   - `Authorization: Bearer <token>`ヘッダーの自動付与
   - 401レスポンス時の自動リフレッシュ＆リトライ
@@ -149,7 +149,7 @@
 
 ### 6. フロントエンドUIコンポーネントの実装
 
-- [ ] 6.1 (P) LoginFormコンポーネントの実装
+- [x] 6.1 (P) LoginFormコンポーネントの実装
   - ユーザー名・パスワード入力フィールド
   - ログインボタンとフォーム送信処理
   - useAuthフックでのログイン関数呼び出し
@@ -159,14 +159,14 @@
   - ログイン成功時のリダイレクト処理
   - _Requirements: 4.1, 4.2, 4.3, 4.5_
 
-- [ ] 6.2 (P) ProtectedRouteコンポーネントの実装
+- [x] 6.2 (P) ProtectedRouteコンポーネントの実装
   - useAuthフックで認証状態取得
   - 未認証時のログインページへのリダイレクト
   - 認証済み時の子コンポーネントレンダリング
   - React Router v6の`<Navigate>`使用
   - _Requirements: 6.4_
 
-- [ ] 6.3 (P) ProtectedPageコンポーネントの実装
+- [x] 6.3 (P) ProtectedPageコンポーネントの実装
   - useEffectでのマウント時データ取得
   - `/api/protected`エンドポイント呼び出し
   - ロード中状態の表示
@@ -175,7 +175,7 @@
   - APIレスポンスの型検証
   - _Requirements: 6.1, 6.2, 6.3_
 
-- [ ] 6.4 (P) TokenDebugPanelコンポーネントの実装
+- [x] 6.4 (P) TokenDebugPanelコンポーネントの実装
   - useAuthフックでAccess Token取得
   - `jose`の`decodeJwt()`でペイロードデコード
   - Access Token有効期限の表示
@@ -188,7 +188,7 @@
 
 ### 7. ルーティングと統合
 
-- [ ] 7.1 React Routerのセットアップとルート定義
+- [x] 7.1 React Routerのセットアップとルート定義
   - React Router v6の設定
   - ログインページ（`/login`）ルート
   - 保護ページ（`/protected`）ルート
@@ -197,14 +197,14 @@
   - _Requirements: 6.4_
   - _Note: 6.1, 6.2, 6.3完了後に実装可能_
 
-- [ ] 7.2 AuthProviderのアプリへの統合
+- [x] 7.2 AuthProviderのアプリへの統合
   - AuthProviderでのアプリ全体ラップ
   - ルーティング階層の適切な配置
   - 初期化順序の確認
   - _Requirements: 4.4, 5.3_
   - _Note: 4.1, 4.2, 7.1完了後に実装可能_
 
-- [ ] 7.3 フロントエンドとバックエンドの統合動作確認
+- [x] 7.3 フロントエンドとバックエンドの統合動作確認
   - ログインフロー全体の動作確認
   - トークンリフレッシュフローの動作確認
   - 保護リソースアクセスの動作確認
@@ -214,21 +214,23 @@
   - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 3.3, 3.4, 4.1, 4.2, 4.3, 4.4, 4.5, 5.1, 5.2, 5.3, 5.4, 6.1, 6.2, 6.3_
   - _Note: 全実装タスク完了後に実行_
 
-- [ ] 7.4 ページリフレッシュ時の認証状態復元の動作確認
+- [x] 7.4 ページリフレッシュ時の認証状態復元の動作確認
   - ページリフレッシュ（F5）実行
   - アプリ起動時の自動リフレッシュ動作確認
   - Access Token復元の確認
   - Refresh Token期限切れ時のリダイレクト確認
   - _Requirements: 5.2, 5.3_
   - _Note: 7.3完了後に実行_
+  - **実装完了**: AuthContextのrefresh()メソッドを修正してトークンからユーザー情報を抽出。App.tsxのルーティングを修正して認証状態変更時の自動リダイレクトを実装。app-integration.test.tsxにテストケースを追加して動作確認。
 
-- [ ] 7.5 TokenDebugPanelの統合と表示確認
+- [x] 7.5 TokenDebugPanelの統合と表示確認
   - TokenDebugPanelの適切なページへの配置
   - デバッグモードフラグの設定方法確認
   - ペイロード表示の正確性確認
   - 有効期限表示の正確性確認
   - _Requirements: 7.1, 7.2_
   - _Note: 6.4完了後に実行_
+  - **実装完了**: ProtectedPageにTokenDebugPanelを統合。debugModeプロパティでデバッグパネルの表示/非表示を制御。テストケースを追加して動作確認。
 
 ---
 

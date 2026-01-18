@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { errorHandler } from "./middleware/error-handler.js";
 import { authRoutes } from "./routes/auth.routes.js";
+import { protectedRoutes } from "./routes/protected.routes.js";
 
 const app = new Hono();
 
@@ -20,6 +21,7 @@ app.use(
 
 // Routes
 app.route("/auth", authRoutes);
+app.route("/api", protectedRoutes);
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
