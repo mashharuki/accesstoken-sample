@@ -232,5 +232,16 @@ pnpm frontend dev
 pnpm backend dev
 ```
 
+アクセストークンの検証に成功した時のログ
+
+```bash
+Verified access token payload: {
+  sub: 'user-demo-001',
+  username: 'demo',
+  iat: 1768794320,
+  exp: 1768795220
+}
+```
+
 ## 参考文献
 - [JWT Decorder](https://www.jwt.io/ja)
