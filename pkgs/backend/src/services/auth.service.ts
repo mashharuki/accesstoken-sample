@@ -20,6 +20,9 @@ export class AuthService {
   private readonly ACCESS_TOKEN_EXPIRY = 15 * 60; // 15 minutes in seconds
   private readonly REFRESH_TOKEN_EXPIRY = 7 * 24 * 60 * 60; // 7 days in seconds
 
+  /**
+   * コンストラクター
+   */
   constructor() {
     const jwtSecret = process.env.JWT_SECRET;
 
@@ -34,6 +37,12 @@ export class AuthService {
     this.secret = new TextEncoder().encode(jwtSecret);
   }
 
+  /**
+   * login API
+   * @param username
+   * @param password
+   * @returns
+   */
   async login(username: string, password: string): Promise<LoginResult> {
     // Validate input
     if (!username || !password) {
@@ -57,6 +66,7 @@ export class AuthService {
       .setExpirationTime(now + this.ACCESS_TOKEN_EXPIRY)
       .sign(this.secret);
 
+    // リフレッシュトークンは長めに設定
     const refreshToken = await new SignJWT({
       sub: DEMO_USER.id,
       username: DEMO_USER.username,
@@ -76,6 +86,11 @@ export class AuthService {
     };
   }
 
+  /**
+   * リフレッシュトークンから新しいアクセストークンを発行
+   * @param refreshToken
+   * @returns
+   */
   async refresh(refreshToken: string): Promise<RefreshResult> {
     // Validate input
     if (!refreshToken) {
@@ -91,6 +106,7 @@ export class AuthService {
       // Generate new access token
       const now = Math.floor(Date.now() / 1000);
 
+      // 必要なデータを詰めてJWTを再発行
       const accessToken = await new SignJWT({
         sub: payload.sub as string,
         username: payload.username as string,
@@ -99,6 +115,8 @@ export class AuthService {
         .setIssuedAt(now)
         .setExpirationTime(now + this.ACCESS_TOKEN_EXPIRY)
         .sign(this.secret);
+
+      console.log("accessToken:", accessToken);
 
       return {
         accessToken,
@@ -121,6 +139,8 @@ export class AuthService {
       const { payload } = await jwtVerify(token, this.secret, {
         algorithms: ["HS256"],
       });
+
+      console.log("Verified access token payload:", payload);
 
       return {
         sub: payload.sub as string,

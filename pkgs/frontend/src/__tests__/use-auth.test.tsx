@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 import { AuthProvider } from "../contexts/auth-context.tsx";
-import { useAuth } from "../contexts/use-auth.ts";
+import { useAuth } from "../hooks/use-auth.ts";
 
 const AuthConsumer = () => {
   const auth = useAuth();

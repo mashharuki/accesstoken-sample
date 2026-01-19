@@ -38,6 +38,8 @@ export const createApiClient = (config: ApiClientConfig): ApiClient => {
       console.log("[apiClient]", method, url);
     }
 
+    // HTTP リクエストを作成する。
+    // `credentials: "include"` を指定して、クッキーを送信する(リフレッシュトークンなど)。
     const response = await fetch(url, {
       method,
       credentials: "include",

@@ -1,8 +1,8 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { TokenDebugPanel } from "../components/TokenDebugPanel.tsx";
-import { useAuth } from "../contexts/use-auth.ts";
 import * as jose from "jose";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { TokenDebugPanel } from "../components/TokenDebugPanel.tsx";
+import { useAuth } from "../hooks/use-auth.ts";
 
 vi.mock("../contexts/use-auth.ts", () => ({
   useAuth: vi.fn(),

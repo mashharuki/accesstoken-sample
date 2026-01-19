@@ -1,11 +1,17 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { LoginForm } from "./components/LoginForm.tsx";
-import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
 import { ProtectedPage } from "./components/ProtectedPage.tsx";
-import { useAuth } from "./contexts/use-auth.ts";
+import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
+import { useAuth } from "./hooks/use-auth.ts";
 
+/**
+ * App コンポーネント
+ * @returns
+ */
 function App() {
+  // 認証情報を取得
   const { isAuthenticated } = useAuth();
+  const debugMode = import.meta.env.DEV;
 
   return (
     <Routes>
@@ -19,7 +25,7 @@ function App() {
         path="/protected"
         element={
           <ProtectedRoute>
-            <ProtectedPage />
+            <ProtectedPage debugMode={debugMode} />
           </ProtectedRoute>
         }
       />

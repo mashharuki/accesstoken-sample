@@ -1,7 +1,7 @@
-import { useState, type FormEvent } from "react";
-import { useAuth } from "../contexts/use-auth.ts";
-import styles from "./LoginForm.module.css";
+import { type FormEvent, useState } from "react";
+import { useAuth } from "../hooks/use-auth.ts";
 import "../styles/design-system.module.css";
+import styles from "../styles/LoginForm.module.css";
 
 interface LoginFormProps {
   onSuccess?: () => void;

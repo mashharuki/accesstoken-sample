@@ -1,7 +1,7 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ProtectedPage } from "../components/ProtectedPage.tsx";
-import { useAuth } from "../contexts/use-auth.ts";
+import { useAuth } from "../hooks/use-auth.ts";
 import * as apiClientModule from "../lib/api-client.ts";
 
 vi.mock("../contexts/use-auth.ts", () => ({

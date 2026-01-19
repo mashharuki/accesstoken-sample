@@ -1,7 +1,7 @@
 import { decodeJwt } from "jose";
-import { useAuth } from "../contexts/use-auth.ts";
-import styles from "./TokenDebugPanel.module.css";
+import { useAuth } from "../hooks/use-auth.ts";
 import "../styles/design-system.module.css";
+import styles from "../styles/TokenDebugPanel.module.css";
 
 interface TokenDebugPanelProps {
   debugMode: boolean;
@@ -86,7 +86,9 @@ export const TokenDebugPanel = ({ debugMode }: TokenDebugPanelProps) => {
                 <span className={styles.infoLabel}>残り時間</span>
                 <span
                   className={styles.infoValue}
-                  style={{ color: isExpired ? "var(--color-error)" : "inherit" }}
+                  style={{
+                    color: isExpired ? "var(--color-error)" : "inherit",
+                  }}
                 >
                   {formatTimeRemaining(timeRemaining)}
                 </span>

@@ -1,13 +1,13 @@
+import { decodeJwt } from "jose";
 import {
   createContext,
+  type ReactNode,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
-  type ReactNode,
 } from "react";
-import { decodeJwt } from "jose";
 
 interface UserInfo {
   id: string;
@@ -38,12 +38,21 @@ export const AuthContext = createContext<AuthContextValue | undefined>(
   undefined,
 );
 
+/**
+ * 認証コンテキストプロバイダー
+ * @param param0
+ * @returns
+ */
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserInfo | null>(null);
   const refreshInProgress = useRef(false);
 
+  /**
+   * ログイン処理
+   */
   const login = useCallback(async (username: string, password: string) => {
+    // login API呼び出し
     const res = await fetch(`${API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
@@ -66,11 +75,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(data.user);
   }, []);
 
+  /**
+   * ログアウト処理
+   */
   const logout = useCallback(() => {
     setAccessToken(null);
     setUser(null);
   }, []);
 
+  /**
+   * リフレッシュトークン更新処理
+   */
   const refresh = useCallback(async () => {
     if (refreshInProgress.current) {
       return;
@@ -78,6 +93,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     refreshInProgress.current = true;
     try {
+      // refresh API呼び出し
       const res = await fetch(`${API_BASE_URL}/auth/refresh`, {
         method: "POST",
         credentials: "include",
@@ -94,6 +110,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       // Decode access token to extract user info
       const payload = decodeJwt(data.accessToken);
+      console.log("Decoded JWT payload:", payload);
       const userId = payload.sub as string;
       const username = payload.username as string;
 

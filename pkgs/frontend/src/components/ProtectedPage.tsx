@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/use-auth.ts";
+import { useAuth } from "../hooks/use-auth.ts";
 import { createApiClient } from "../lib/api-client.ts";
-import { TokenDebugPanel } from "./TokenDebugPanel.tsx";
-import styles from "./ProtectedPage.module.css";
 import "../styles/design-system.module.css";
+import styles from "../styles/ProtectedPage.module.css";
+import { TokenDebugPanel } from "./TokenDebugPanel.tsx";
 
 interface ProtectedData {
   message: string;
@@ -32,7 +32,7 @@ export const ProtectedPage = ({ debugMode = false }: ProtectedPageProps) => {
 
         const apiClient = createApiClient({
           baseURL: "http://localhost:3001",
-          debugMode: false,
+          debugMode,
           getAccessToken: () => accessToken,
           refresh,
         });

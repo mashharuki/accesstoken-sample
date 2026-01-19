@@ -1,9 +1,9 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { AuthProvider } from "../contexts/auth-context.tsx";
-import { useAuth } from "../contexts/use-auth.ts";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import App from "../App.tsx";
+import { AuthProvider } from "../contexts/auth-context.tsx";
+import { useAuth } from "../hooks/use-auth.ts";
 
 // Mock fetch for AuthProvider's automatic refresh on mount
 const mockFetch = vi.fn();
